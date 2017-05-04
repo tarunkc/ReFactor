@@ -38,6 +38,10 @@
             return false;
           }
         } else {
+          // Error message asked to select both checkin and checkout dates,
+          // but we are validating only checkin date, I feel we should validate both dates
+          // (This is missing in original code also)
+          // If both are required to be validated then below code be refactored more as above condition check will be almost same
           if (!checkInDate.isValid()) {
             $scope.showMessage('Please select your check-in and check-out dates');
             return false;
