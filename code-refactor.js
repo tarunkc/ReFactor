@@ -4,6 +4,7 @@
         var nowTemp = new Date();
         var currentDate = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
         var checkInDate = moment($scope.requestedListingData.date_from, 'DD/MM/YYYY');
+        var checkOutDate = moment($scope.requestedListingData.date_until, 'DD/MM/YYYY');
 
         var isTodayCheckIn = checkInDate.valueOf() == currentDate.getTime();
         var isPastCheckInDate = checkInDate.toDate() < currentDate;
@@ -16,7 +17,7 @@
         });
 
         if ($scope.packeageType === 1) {
-          if (!$scope.requestedListingData.date_from || !$scope.requestedListingData.date_until) {
+          if (!checkInDate.isValid() || !checkOutDate.isValid()) {
             $scope.showMessage('Please select your check-in and check-out dates');
             return false;
           } else {
@@ -26,7 +27,7 @@
             }
           }
         } else {
-          if (!$scope.requestedListingData.date_from) {
+          if (!checkInDate.isValid()) {
             $scope.showMessage('Please select your check-in and check-out dates');
             return false;
           } else {
