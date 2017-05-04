@@ -3,9 +3,10 @@
         var atleastOneBookableSelected = false;
         var nowTemp = new Date();
         var currentDate = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-        var isTodayCheckIn = moment($scope.requestedListingData.date_from, 'DD/MM/YYYY').valueOf() == currentDate.getTime();
-        var checkInDate = moment($scope.requestedListingData.date_from, 'DD/MM/YYYY').toDate();
-        var isPastCheckInDate = checkInDate < currentDate;
+        var checkInDate = moment($scope.requestedListingData.date_from, 'DD/MM/YYYY');
+
+        var isTodayCheckIn = checkInDate.valueOf() == currentDate.getTime();
+        var isPastCheckInDate = checkInDate.toDate() < currentDate;
 
 
         angular.forEach($scope.requestedListingData.bookables, function (value, key) {
