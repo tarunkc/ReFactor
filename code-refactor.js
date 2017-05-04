@@ -10,7 +10,7 @@
 
 
         angular.forEach($scope.requestedListingData.bookables, function (value, key) {
-          if (value && value.requested > 0) {
+          if (!atleastOneBookableSelected && value && value.requested > 0) { Added //!atleastOneBookableSelected or use native for loop for performance
             atleastOneBookableSelected = true;
           }
         });
